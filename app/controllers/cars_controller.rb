@@ -14,6 +14,7 @@ class CarsController < ApplicationController
   # GET /cars/1.json
   def show
     @car = Car.find(params[:id])
+    @comment = Comment.new
 
     respond_to do |format|
       format.html # show.html.erb
@@ -80,4 +81,8 @@ class CarsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def find_car 
+    @car = Car.find(params[:car_id] || params[:id])
+  end 
 end
