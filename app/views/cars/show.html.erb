@@ -1,23 +1,28 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <b>Make:</b>
-  <%= @car.make %>
-</p>
-
-<p>
-  <b>Model:</b>
-  <%= @car.model %>
-</p>
-
-<p>
-  <b>Description:</b>
+<h2><%= @car.make %> <%= @car.model %></h2>
+<div class="car_images">
+	Images are comming soon...
+</div>
+  
+<h3>Description:</h3>
+<div class="car_description">
   <%= @car.description %>
 </p>
 
+<h3>Details:</h3>
+<div class="car_details">
+	<p><span class="label">Make:</span> <%= @car.make %></p>
+	<p><span class="label">Model:</span> <%= @car.model %></p>
+	<p><span class="label">Year:</span> year is comming soon... </p>
+	<p><span class="label">Category:</span> <%= @car.car_category %></p>
+	<p><span class="label">Body type:</span> <%= @car.body_type %></p>
+	<p><span class="label">Advantages:</span> <%= @car.advantages %></p>
+	<p><span class="label">Disadvantages:</span> <%= @car.disadvantages %></p>
+ </div>
+
 <hr />
 
-<h2> Comments </h2>
+<h3> Comments </h3>
  <% @car.comments.each do |comment| %>
  	<div style="border:solid black 1px">
 		<p> <%= comment.body %> </p>
