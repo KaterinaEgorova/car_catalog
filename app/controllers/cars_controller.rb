@@ -1,4 +1,5 @@
 class CarsController < ApplicationController
+  before_filter :authenticate_user! , except: [:index,:show]
   # GET /cars
   # GET /cars.json
   def index
@@ -15,6 +16,7 @@ class CarsController < ApplicationController
   def show
     @car = Car.find(params[:id])
     @comment = Comment.new
+    @like =  current_user.like_for(@car) || Like.new
 
     respond_to do |format|
       format.html # show.html.erb
@@ -82,6 +84,7 @@ class CarsController < ApplicationController
     end
   end
 
+  private
   def find_car 
     @car = Car.find(params[:car_id] || params[:id])
   end 

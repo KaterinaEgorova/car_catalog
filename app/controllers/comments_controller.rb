@@ -43,6 +43,7 @@ class CommentsController < CarsController
   def create
     @comment = Comment.new(params[:comment])
     @comment.car = @car
+    @comment.user = current_user
 
     respond_to do |format|
       if @comment.save

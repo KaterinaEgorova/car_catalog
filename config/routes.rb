@@ -1,10 +1,15 @@
 CarCatalog::Application.routes.draw do
 
+  devise_for :users
+
   resources :cars
 
   resources :cars, only: [:show]  do
     resources :comments
+    resources :likes, only: [:create,:destroy]
   end
+
+  root :to => 'cars#index'
 
 
   # The priority is based upon order of creation:

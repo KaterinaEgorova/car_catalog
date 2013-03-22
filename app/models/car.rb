@@ -4,6 +4,7 @@ class Car < ActiveRecord::Base
   validates :make, presence: true
 
   has_many :comments
+  has_many :likes #, through: :users
 
   CAR_CATEGORY_SMALL = "Small"
   CAR_CATEGORY_MEDIUM = "Medium"

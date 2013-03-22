@@ -7,11 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<%= render partial: '/layouts/shared/user_bar' %>
+	<%= render partial: '/layouts/shared/flash_display', locals: {notice: notice, alert: alert} %>
+	
 
 	<% if notice || alert %>
 	 <p class="notice"> <%= notice %> </p>
 	 <p class="alert"> <%= alert %> </p>
 	<% end %>
+
 
 <%= yield %>
 
