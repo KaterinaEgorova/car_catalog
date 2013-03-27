@@ -1,11 +1,11 @@
 class Car < ActiveRecord::Base
-  attr_accessible :description, :make, :model, :car_category, :body_type, :advantages, :disadvantages
+  attr_accessible :description, :make, :model, :car_category, :body_type, :advantages, :disadvantages, :images_attributes
 
   validates :make, presence: true
 
   has_many :comments
   has_many :likes #, through: :users
-  has_many :images
+  has_many :images, :dependent => :destroy
   accepts_nested_attributes_for :images, allow_destroy: true 
 
   CAR_CATEGORY_SMALL = "Small"

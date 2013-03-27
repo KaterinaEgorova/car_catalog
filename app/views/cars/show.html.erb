@@ -15,7 +15,9 @@
 <%= pluralize( @car.likes.count, 'person') %> likes this car!
 
 <div class="car_images">
-	Images are comming soon...
+	<% @car.images.each do |image| %>
+		<%= image_tag image.car_image.url(:thumb) %>
+	<% end %>
 </div>
   
 <h3>Description</h3>
@@ -48,7 +50,7 @@
 
 
  <%= form_for @comment, url: car_comments_path(@car) do |f| %>
-  <%= f.text_area :body %>
+  <%= f.text_area :body, rows: 1 %>
   <%= f.submit %>
 <% end %>
 

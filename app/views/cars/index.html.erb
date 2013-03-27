@@ -14,7 +14,7 @@
   <tr>
     <td><%= car.make %></td>
     <td><%= car.model %></td>
-    <td><%= car.description %></td>
+    <td><%= truncate(car.description, length: 25, omission: '...') %></td>
     <td><%= link_to 'Show', car %></td>
     <td><%= link_to 'Edit', edit_car_path(car) %></td>
     <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
