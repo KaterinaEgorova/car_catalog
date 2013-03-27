@@ -5,6 +5,8 @@ class Car < ActiveRecord::Base
 
   has_many :comments
   has_many :likes #, through: :users
+  has_many :images
+  accepts_nested_attributes_for :images, allow_destroy: true 
 
   CAR_CATEGORY_SMALL = "Small"
   CAR_CATEGORY_MEDIUM = "Medium"

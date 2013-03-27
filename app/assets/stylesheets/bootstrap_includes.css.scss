@@ -1,8 +1,3 @@
-// Place all the styles related to the Cars controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
-@import "bootstrap";
 
 // Example using 'Cerulean' bootswatch
 //
@@ -13,10 +8,10 @@
 @import "bootstrap";
 
 // Bootstrap body padding for fixed navbar
-body { padding-top: 60px; }
+body { padding-top: 60px; padding-left: 60px; }
 
 // Responsive styles go here in case you want them
 @import "bootstrap-responsive";
 
 // And finally bootswatch style itself
-@import "bootswatch/cerulean/bootswatch";
+@import "bootswatch/superhero/bootswatch";

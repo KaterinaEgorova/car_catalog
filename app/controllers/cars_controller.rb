@@ -16,7 +16,7 @@ class CarsController < ApplicationController
   def show
     @car = Car.find(params[:id])
     @comment = Comment.new
-    @like =  current_user.like_for(@car) || Like.new
+    @like =  ( current_user && current_user.like_for(@car)) || Like.new
 
     respond_to do |format|
       format.html # show.html.erb
@@ -28,6 +28,7 @@ class CarsController < ApplicationController
   # GET /cars/new.json
   def new
     @car = Car.new
+    5.times { @car.images.build } 
 
     respond_to do |format|
       format.html # new.html.erb
@@ -38,6 +39,7 @@ class CarsController < ApplicationController
   # GET /cars/1/edit
   def edit
     @car = Car.find(params[:id])
+    5.times { @car.images.build } 
   end
 
   # POST /cars

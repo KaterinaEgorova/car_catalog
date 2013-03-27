@@ -7,6 +7,7 @@ CarCatalog::Application.routes.draw do
   resources :cars, only: [:show]  do
     resources :comments
     resources :likes, only: [:create,:destroy]
+    resources :imamges, only: [:create, :destroy]
   end
 
   root :to => 'cars#index'

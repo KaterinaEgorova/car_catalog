@@ -12,4 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
+//following command will include all files in this directory
 //= require_tree .

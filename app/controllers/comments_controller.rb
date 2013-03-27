@@ -47,6 +47,7 @@ class CommentsController < CarsController
 
     respond_to do |format|
       if @comment.save
+        CarsMailer.comment_notification(current_user, @comment.car).deliver
         format.html { redirect_to @car, notice: 'Comment was successfully created.' }
         format.json { render json: @comment, status: :created, location: @comment }
       else
