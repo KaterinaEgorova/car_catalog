@@ -12,5 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
+//= require bootstrap-scrollspy
+//= require bootstrap-modal
+//= require bootstrap-dropdown
+//= require bootstrap-tooltip
+//= require bootstrap-popover
 //following command will include all files in this directory
 //= require_tree .

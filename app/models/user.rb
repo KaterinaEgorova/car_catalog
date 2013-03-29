@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :avatar
     # This method associates the attribute ":avatar" with a file attachment
   has_attached_file :avatar, styles: {
-    thumb: '100x100>',
+    thumb: '50x50>',
     square: '200x200#',
     medium: '300x300>',
     :default_url => '/assets/no_avatar.jpg'

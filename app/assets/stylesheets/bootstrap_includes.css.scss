@@ -1,6 +1,7 @@
 
 // Example using 'Cerulean' bootswatch
 //
+
 // First import journal variables
 @import "bootswatch/cerulean/variables";
 
@@ -14,4 +15,4 @@ body { padding-top: 60px; padding-left: 60px; }
 @import "bootstrap-responsive";
 
 // And finally bootswatch style itself
-@import "bootswatch/superhero/bootswatch";
+@import "bootswatch/cerulean/bootswatch";

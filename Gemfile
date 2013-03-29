@@ -31,6 +31,10 @@ gem 'rmagick'
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'
 gem 'faker'
+gem 'delayed_job_active_record'
+
+gem 'quiet_assets', group: :development
+
 #gem 'cocaine', '0.3.2'
 
 # To use ActiveModel has_secure_password

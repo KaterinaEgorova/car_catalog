@@ -7,7 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<%= render partial: '/layouts/shared/user_bar' %>
+<div class="navbar navbar-fixed-top navbar-inverse">
+   <div class="navbar-inner">	
+		<div class="container">
+			 	<%= link_to "Car Catalog", cars_path, class: "brand" %>
+			 	<div class="nav-collapse collapse" id="main-menu">
+					<%= render partial: '/layouts/shared/user_bar' %>
+				</div>
+		</div>
+	</div>
+</div>
+
 	<%= render partial: '/layouts/shared/flash_display', locals: {notice: notice, alert: alert} %>
 	
 

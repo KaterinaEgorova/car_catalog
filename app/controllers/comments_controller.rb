@@ -47,7 +47,7 @@ class CommentsController < CarsController
 
     respond_to do |format|
       if @comment.save
-        CarsMailer.comment_notification(current_user, @comment.car).deliver
+        CarsMailer.delay.comment_notification(current_user, @comment.car)
         format.html { redirect_to @car, notice: 'Comment was successfully created.' }
         format.json { render json: @comment, status: :created, location: @comment }
       else
@@ -60,7 +60,7 @@ class CommentsController < CarsController
   # PUT /comments/1
   # PUT /comments/1.json
   def update
-    @comment = Comment.find(params[:id])
+    @comment = current_user.comments.find(params[:id])
 
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
