@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
     thumb: '50x50>',
     square: '200x200#',
     medium: '300x300>',
-    :default_url => '/assets/no_avatar.jpg'
+    :default_url => '/images/no_avatar.jpg'
   }
 
   # attr_accessible :title, :body
