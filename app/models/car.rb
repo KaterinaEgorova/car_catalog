@@ -26,4 +26,33 @@ class Car < ActiveRecord::Base
   BODY_TYPE_CROSSOVER = "Crossover"
 
   BODY_TYPES = [BODY_TYPE_COUPE,BODY_TYPE_SEDAN,BODY_TYPE_TRUCK,BODY_TYPE_SUV,BODY_TYPE_VAN,BODY_TYPE_WAGON,BODY_TYPE_CONVERTIBLE,BODY_TYPE_CROSSOVER]
+
+  SEARCH_ALL = "All" 
+  SEARCH_BODY_TYPE = "Body Type"
+  SEARCH_CATEGORY = "Category"
+  SEARCH_DESCRIPTION = "Description"
+  SEARCH_MAKE = "Make"
+  SEARCH_MODEL = "Model"
+
+
+  SEARCH_TYPES = [SEARCH_ALL, SEARCH_BODY_TYPE, SEARCH_CATEGORY, SEARCH_DESCRIPTION, SEARCH_MAKE, SEARCH_MODEL]
+
+  def self.search_for(search_type, keyword)
+    search_condition = "%" + keyword + "%"
+    if search_type == SEARCH_ALL
+      find(:all, :conditions => ['description LIKE ? OR make LIKE ? OR model LIKE ? OR car_category LIKE ? OR body_type LIKE ?', search_condition, search_condition, search_condition, search_condition, search_condition])
+    elsif search_type == SEARCH_BODY_TYPE
+      find(:all, :conditions => ['body_type LIKE ?',  search_condition])
+    elsif search_type == SEARCH_CATEGORY
+      find(:all, :conditions => ['car_category LIKE ?', search_condition])
+    elsif search_type == SEARCH_DESCRIPTION
+     find(:all, :conditions => ['description LIKE ?', search_condition])
+    elsif search_type == SEARCH_MAKE
+      find(:all, :conditions => ['make LIKE ?', search_condition])
+    elsif search_type == SEARCH_MODEL
+     find(:all, :conditions => ['model LIKE ?', search_condition])
+    else
+      []
+    end
+  end
 end

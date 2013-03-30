@@ -1,5 +1,5 @@
 class CarsController < ApplicationController
-  before_filter :authenticate_user! , except: [:index,:show]
+  before_filter :authenticate_user! , except: [:index,:show,:search]
   # GET /cars
   # GET /cars.json
   def index
@@ -85,6 +85,10 @@ class CarsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+def search
+  @cars = Car.search_for params[:search_type], params[:search]
+end
 
   private
   def find_car 
