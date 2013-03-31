@@ -35,7 +35,8 @@ class CommentsController < CarsController
 
   # GET /comments/1/edit
   def edit
-    @comment = Comment.find(params[:id])
+    @car = Car.find(params[:id])
+    @comment = Comment.first#find(params[:id])
   end
 
   # POST /comments
@@ -48,7 +49,7 @@ class CommentsController < CarsController
     respond_to do |format|
       if @comment.save
         CarsMailer.delay.comment_notification(current_user, @comment.car)
-        format.html { redirect_to @car, notice: 'Comment was successfully created.' }
+        format.html { redirect_to :root, notice: 'Comment was successfully created.' }
         format.json { render json: @comment, status: :created, location: @comment }
       else
         format.html { render action: "new" }
