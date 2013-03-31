@@ -5,8 +5,10 @@
     <th>Model</th>
     <th>Description</th>
     <th></th>
-    <th></th>
-    <th></th>
+    <% if @is_current_user_admin %>    
+      <th></th>
+      <th></th>
+    <% end %>
   </tr>
 
 <% @cars.each do |car| %>
@@ -15,8 +17,10 @@
     <td><%= car.model %></td>
     <td><%= truncate(car.description, length: 25, omission: '...') %></td>
     <td><%= link_to 'Show', car %></td>
-    <td><%= link_to 'Edit', edit_car_path(car) %></td>
-    <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% if @is_current_user_admin  %>    
+      <td><%= link_to 'Edit', edit_car_path(car) %></td>
+      <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
