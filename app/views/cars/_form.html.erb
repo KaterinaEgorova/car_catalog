@@ -30,15 +30,15 @@
   </div>
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <%= f.text_area :description, rows: 5 %>
   </div>
     <div class="field">
     <%= f.label :advantages %><br />
-    <%= f.text_area :advantages %>
+    <%= f.text_area :advantages, rows: 5 %>
   </div>
   <div class="field">
     <%= f.label :disadvantages %><br />
-    <%= f.text_area :disadvantages %>
+    <%= f.text_area :disadvantages, rows: 5%>
   </div>
   <%= @car.images.length %>
   <h4>New Images</h4>
