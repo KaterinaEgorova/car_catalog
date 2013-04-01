@@ -1,7 +1,12 @@
+require 'google_chart'
+
 class CarsController < ApplicationController
   before_filter :authenticate_user! , except: [:index,:show,:search, :sort]
   before_filter :find_car, only: [:show, :edit, :update, :destroy]
   before_filter :set_is_current_user_admin
+
+
+
 
   # GET /cars
   # GET /cars.json
@@ -10,12 +15,48 @@ class CarsController < ApplicationController
     if @sort_type
       @cars = Car.all_ordered params[:sort_type]
     else  
-      @cars = Car.all_ordered Car::SEARCH_ALL
+      @cars = Car.all.sort_by(&:likes_count).reverse.map
     end
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @cars }
+    end
+  end
+
+  def ratings
+    @cars = Car.all.sort_by(&:likes_count).reverse.map
+    
+    # Need to clean up this code
+    # OK for now, prototype code, just needs to work
+    bar_1_data = []
+    names_array = []
+    pc_data = {}
+
+    i = 0
+    @cars.each do |car|
+      h1 = { car.make + ' ' + car.model => car.likes.count }
+      pc_data = pc_data.merge(h1)
+      i = i + 1
+      if i == 5 
+        break;
+      end
+    end
+
+    # pc.data key, value
+    h = pc_data.length * 55 + 50 
+    lc = GoogleChart::BarChart.new("700x" + h.to_s, "", :horizontal, false)
+      lc.show_legend = false
+      lc.axis :x, :color => '333333', :font_size => 10, :alignment => :center, :range => [0,pc_data.values.max]
+      lc.axis :y, :color => '333333', :font_size => 20, :alignment => :right, :labels => pc_data.keys
+      lc.width_spacing_options(:bar_width => 50, :bar_spacing => 5) 
+      lc.data "Cars", pc_data.values, '3caae8'
+    
+    @chart_url = lc.to_url
+
+    respond_to do |format|
+      format.html # ratings.html.erb
+      format.json { render json: @chart_url }
     end
   end
 

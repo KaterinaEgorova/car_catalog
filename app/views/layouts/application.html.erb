@@ -12,6 +12,10 @@
 		<div class="container">
 			 	<%= link_to "Car Catalog", :root, class: "brand" %>
 			 	<div  id="main-menu"> <!-- class="nav-collapse collapse" -->
+			 		<ul class="nav">
+			 			<li class=""><a href="/">Home</a></li>
+			 			<li><%= link_to "Ratings", cars_ratings_path %></li>
+			 		</ul>
 					<%= render partial: '/layouts/shared/user_bar' %>
 				</div>
 		</div>
@@ -19,14 +23,6 @@
 </div>
 
 	<%= render partial: '/layouts/shared/flash_display', locals: {notice: notice, alert: alert} %>
-	
-
-	<% if notice %>
-	 <p class="notice"> <%= notice %> </p>
-	<% end %>
-	<% if alert %>
-		<p class="alert"> <%= alert %> </p>
-	<% end %>
 
 <div class="container">
 	<%= yield %>

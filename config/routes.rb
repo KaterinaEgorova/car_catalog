@@ -3,7 +3,9 @@ CarCatalog::Application.routes.draw do
   devise_for :users
 
   resources :cars
-  
+
+  match 'cars_ratings' => 'cars#ratings'
+
   match 'home/:id' => 'home#show_car', :as => :show_car
 
   resources :cars, only: [:show]  do
@@ -14,7 +16,7 @@ CarCatalog::Application.routes.draw do
     post :sort, on: :collection    
   end
 
-  root :to => 'home#index'
+  root :to => 'cars#index'
 
 
   # The priority is based upon order of creation:
