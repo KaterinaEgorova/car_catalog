@@ -49,7 +49,7 @@ class CommentsController < CarsController
     respond_to do |format|
       if @comment.save
         CarsMailer.delay.comment_notification(current_user, @comment.car)
-        format.html { redirect_to :root, notice: 'Comment was successfully created.' }
+        format.html { redirect_to @car, notice: 'Comment was successfully created.' }
         format.json { render json: @comment, status: :created, location: @comment }
       else
         format.html { render action: "new" }
@@ -65,7 +65,7 @@ class CommentsController < CarsController
 
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
-        format.html { redirect_to :root, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to @car, notice: 'Comment was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -79,12 +79,11 @@ class CommentsController < CarsController
   def destroy
     @comment = Comment.find(params[:id])
     
-    # @comment.destroy
+    @comment.destroy
 
     respond_to do |format|
-      format.js { render 'comments/destroy', locals:{comment:@comment} }
-      # format.html { redirect_to :root }
-      # format.json { head :no_content }
+      format.html { redirect_to @car }
+      format.json { head :no_content }
     end
 
   end

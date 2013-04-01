@@ -5,9 +5,9 @@ class LikesController < CarsController
 		@like.user = current_user
 		@like.car = @car
 		if !current_user.has_liked?(@car) && @like.save
-			redirect_to :root, notice: "You liked this car!"
+			redirect_to @car, notice: "You liked this car!"
 		else
-			redirect_to :root, alert: "Sorry, you could not like!"
+			redirect_to @car, alert: "Sorry, you could not like!"
 		end
 		
 	end
@@ -15,9 +15,9 @@ class LikesController < CarsController
 	def destroy
 		@like = Like.find(params[:id])
 		if @like.destroy
-			redirect_to :root, notice: "You unliked this car!"
+			redirect_to @car, notice: "You unliked this car!"
 		else
-			redirect_to :root, alert: "Sorry, you could not unlike!"
+			redirect_to @car, alert: "Sorry, you could not unlike!"
 		end
 	end
 end

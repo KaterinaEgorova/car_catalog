@@ -21,7 +21,7 @@ class CarsController < ApplicationController
     @like =  ( current_user && current_user.like_for(@car)) || Like.new
 
     respond_to do |format|
-      format.html { redirect_to show_car_path(id:@car.id) }
+      format.html 
       format.json { render json: @car }
     end
   end
