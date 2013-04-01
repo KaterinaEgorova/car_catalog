@@ -34,6 +34,9 @@ class Car < ActiveRecord::Base
   SEARCH_MAKE = "Make"
   SEARCH_MODEL = "Model"
 
+  def likes_count
+    likes.count
+  end
 
   SEARCH_TYPES = [SEARCH_ALL, SEARCH_BODY_TYPE, SEARCH_CATEGORY, SEARCH_DESCRIPTION, SEARCH_MAKE, SEARCH_MODEL]
 

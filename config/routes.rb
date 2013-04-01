@@ -13,7 +13,7 @@ CarCatalog::Application.routes.draw do
     post :search, on: :collection    
   end
 
-  root :to => 'home#index'
+  root :to => 'cars#index'
 
 
   # The priority is based upon order of creation:

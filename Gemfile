@@ -32,6 +32,7 @@ gem 'bootstrap-sass'
 gem 'bootswatch-rails'
 gem 'faker'
 gem 'delayed_job_active_record'
+gem 'gchartrb'
 
 gem 'quiet_assets', group: :development
 

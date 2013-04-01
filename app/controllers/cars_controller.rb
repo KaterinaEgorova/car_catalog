@@ -1,18 +1,53 @@
+require 'google_chart'
+
 class CarsController < ApplicationController
   before_filter :authenticate_user! , except: [:index,:show,:search]
   before_filter :find_car, only: [:show, :edit, :update, :destroy]
   before_filter :set_is_current_user_admin
 
+
+
+
   # GET /cars
   # GET /cars.json
   def index
-    @cars = Car.all
+    @cars = Car.all.sort_by(&:likes_count).reverse.map
+
+
+    # Need to clean up this code
+    # OK for now, prototype code, just needs to work
+    bar_1_data = []
+    names_array = []
+    pc_data = {}
+
+    i = 0
+    @cars.each do |car|
+      h1 = { car.make + ' ' + car.model => car.likes.count }
+      pc_data = pc_data.merge(h1)
+      i = i + 1
+      if i == 5 
+        break;
+      end
+    end
+
+    pc = GoogleChart::PieChart.new("500x350", "Top 5 Most Liked Cars", false)
+    @output = ''
+    pc_data.each do |k,v|
+      pc.data k, v
+    end
+
+     # pc.data key, value
+
+    
+
+    @chart_url = pc.to_url
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @cars }
     end
   end
+
 
   # GET /cars/1
   # GET /cars/1.json
