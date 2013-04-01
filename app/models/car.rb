@@ -33,13 +33,14 @@ class Car < ActiveRecord::Base
   SEARCH_DESCRIPTION = "Description"
   SEARCH_MAKE = "Make"
   SEARCH_MODEL = "Model"
+  LIKES_COUNT = "Likes Count"
 
   def likes_count
     likes.count
   end
 
   SEARCH_TYPES = [SEARCH_ALL, SEARCH_BODY_TYPE, SEARCH_CATEGORY, SEARCH_DESCRIPTION, SEARCH_MAKE, SEARCH_MODEL]
-  ORDER_TYPES = [SEARCH_BODY_TYPE, SEARCH_CATEGORY, SEARCH_DESCRIPTION, SEARCH_MAKE, SEARCH_MODEL]
+  ORDER_TYPES = [LIKES_COUNT, SEARCH_BODY_TYPE, SEARCH_CATEGORY, SEARCH_DESCRIPTION, SEARCH_MAKE, SEARCH_MODEL]
 
   def self.search_for(search_type, keyword)
     search_condition = "%" + keyword + "%"
@@ -60,9 +61,10 @@ class Car < ActiveRecord::Base
     end
   end
 
-  def self.all_ordered(order_type=SEARCH_ALL)
-    if order_type == SEARCH_ALL
-      find(:all,  :order =>'make ASC, model ASC')
+  def self.all_ordered(order_type=LIKES_COUNT)
+    if order_type == LIKES_COUNT
+      all.sort_by(&:likes_count).reverse.map
+#      find(:all,  :order =>'make ASC, model ASC')
     elsif order_type == SEARCH_BODY_TYPE
       find(:all, :order =>'body_type ASC')
     elsif order_type == SEARCH_CATEGORY

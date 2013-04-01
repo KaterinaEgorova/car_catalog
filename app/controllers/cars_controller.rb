@@ -11,12 +11,7 @@ class CarsController < ApplicationController
   # GET /cars
   # GET /cars.json
   def index
-    @sort_type = params[:sort_type]
-    if @sort_type
-      @cars = Car.all_ordered params[:sort_type]
-    else  
-      @cars = Car.all.sort_by(&:likes_count).reverse.map
-    end
+    @cars = Car.all.sort_by(&:likes_count).reverse.map
 
     respond_to do |format|
       format.html # index.html.erb

@@ -1,5 +1,5 @@
   <%= form_tag sort_cars_path  do  %>
-  <% @sort_type = "Make" unless @sort_type %> 
+  <% @sort_type = Car::LIKES_COUNT unless @sort_type %> 
     <%= select_tag :sort_type, options_for_select(Car::ORDER_TYPES, @sort_type) %> 
     <%= submit_tag "Sort", :name => nil %> 
   <% end %> 
