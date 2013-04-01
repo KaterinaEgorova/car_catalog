@@ -43,7 +43,7 @@ class CarsController < ApplicationController
     lc = GoogleChart::BarChart.new("700x" + h.to_s, "", :horizontal, false)
       lc.show_legend = false
       lc.axis :x, :color => '333333', :font_size => 10, :alignment => :center, :range => [0,pc_data.values.max]
-      lc.axis :y, :color => '333333', :font_size => 20, :alignment => :right, :labels => pc_data.keys
+      lc.axis :y, :color => '333333', :font_size => 20, :alignment => :right, :labels => pc_data.keys.reverse
       lc.width_spacing_options(:bar_width => 50, :bar_spacing => 5) 
       lc.data "Cars", pc_data.values, '3caae8'
     
