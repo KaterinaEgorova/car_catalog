@@ -1,6 +1,6 @@
 <h2><%= @car.make %> <%= @car.model %></h2>
 
-<%= render 'misc/like' %>
+<%= render 'like', car: car %>
 
 <div class="car_images">
 	<% @car.images.each do |image| %>
