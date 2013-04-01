@@ -2,7 +2,7 @@
 <%if current_user %>
  <%= form_for @comment, url: car_comments_path(@car) do |f| %>
   <%= f.text_area :body, rows: 1 %>
-  <%= f.submit "Add", remote: true , class: "btn btn-primary" %>
+  <%= f.submit "Add", class: "btn btn-primary" %>
 <% end %>
 <% else %>
 	<p>Please <%= link_to "Sign in", new_user_session_path %> to leave a commnt </p>

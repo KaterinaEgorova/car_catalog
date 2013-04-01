@@ -38,7 +38,7 @@ class CarsController < ApplicationController
         format.json { render json: @car }
         end
     elsif
-      redirect_to cars_url, notice: "You must be an admin to create a new car entry"      
+      redirect_to :root, notice: "You must be an admin to create a new car entry"      
     end
   end
 
@@ -47,7 +47,7 @@ class CarsController < ApplicationController
     if @is_current_user_admin    
       5.times { @car.images.build } 
     elsif
-      redirect_to cars_url, notice: "You must be an admin to edit the car entry"      
+      redirect_to :root, notice: "You must be an admin to edit the car entry"      
     end
   end
 

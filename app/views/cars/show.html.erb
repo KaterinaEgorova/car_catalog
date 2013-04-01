@@ -5,4 +5,4 @@
 <% if @is_current_user_admin %>    
   <%= link_to 'Edit', edit_car_path(@car), class: "btn btn-primary", :style=> "color: #FFFFFF"  %> &nbsp;
 <% end %>
-<%= link_to 'Back', cars_path, class: "btn btn-primary", :style=> "color: #FFFFFF" %>
+<%= link_to 'Back', :root, class: "btn btn-primary", :style=> "color: #FFFFFF" %>
