@@ -4,7 +4,7 @@
 		<%= f.submit "Unlike", class: "btn btn-primary" %> <%= pluralize( @car.likes.count, 'person') %> likes this car!
 	<% end %>
 <% else %>
-  <p><%= link_to raw('<i class=\"icon-thumbs-up icon-white\"></i> Like'),
+  <p><%= link_to raw('<i class=\'icon-thumbs-up icon-white\'></i> Like'),
   	car_likes_path(@car), 
 	  class: "btn btn-primary",
 	  method: :create %> <%= pluralize( @car.likes.count, 'person') %> likes this car!
