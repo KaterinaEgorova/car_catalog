@@ -3,7 +3,9 @@ CarCatalog::Application.routes.draw do
   devise_for :users
 
   resources :cars
-  
+
+  match 'cars_ratings' => 'cars#ratings'
+
   match 'home/:id' => 'home#show_car', :as => :show_car
 
   resources :cars, only: [:show]  do

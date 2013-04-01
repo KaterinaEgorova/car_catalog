@@ -13,7 +13,15 @@ class CarsController < ApplicationController
   def index
     @cars = Car.all.sort_by(&:likes_count).reverse.map
 
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @cars }
+    end
+  end
 
+  def ratings
+    @cars = Car.all.sort_by(&:likes_count).reverse.map
+    
     # Need to clean up this code
     # OK for now, prototype code, just needs to work
     bar_1_data = []
@@ -30,15 +38,9 @@ class CarsController < ApplicationController
       end
     end
 
-    pc = GoogleChart::PieChart.new("500x350", "Top 5 Most Liked Cars", false)
-    @output = ''
-    pc_data.each do |k,v|
-      pc.data k, v
-    end
-
-     # pc.data key, value
+    # pc.data key, value
     h = pc_data.length * 55 + 50 
-    lc = GoogleChart::BarChart.new("700x" + h.to_s, "Top 5 Most Liked Cars", :horizontal, false)
+    lc = GoogleChart::BarChart.new("700x" + h.to_s, "", :horizontal, false)
       lc.show_legend = false
       lc.axis :x, :color => '333333', :font_size => 10, :alignment => :center, :range => [0,pc_data.values.max]
       lc.axis :y, :color => '333333', :font_size => 20, :alignment => :right, :labels => pc_data.keys
@@ -48,11 +50,10 @@ class CarsController < ApplicationController
     @chart_url = lc.to_url
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @cars }
+      format.html # ratings.html.erb
+      format.json { render json: @chart_url }
     end
   end
-
 
   # GET /cars/1
   # GET /cars/1.json
