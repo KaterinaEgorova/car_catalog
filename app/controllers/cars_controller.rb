@@ -37,10 +37,15 @@ class CarsController < ApplicationController
     end
 
      # pc.data key, value
-
+    h = pc_data.length * 55 + 50 
+    lc = GoogleChart::BarChart.new("700x" + h.to_s, "Top 5 Most Liked Cars", :horizontal, false)
+      lc.show_legend = false
+      lc.axis :x, :color => '333333', :font_size => 10, :alignment => :center, :range => [0,pc_data.values.max]
+      lc.axis :y, :color => '333333', :font_size => 20, :alignment => :right, :labels => pc_data.keys
+      lc.width_spacing_options(:bar_width => 50, :bar_spacing => 5) 
+      lc.data "Cars", pc_data.values, '3caae8'
     
-
-    @chart_url = pc.to_url
+    @chart_url = lc.to_url
 
     respond_to do |format|
       format.html # index.html.erb
