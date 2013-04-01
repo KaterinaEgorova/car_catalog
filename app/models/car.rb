@@ -36,6 +36,7 @@ class Car < ActiveRecord::Base
 
 
   SEARCH_TYPES = [SEARCH_ALL, SEARCH_BODY_TYPE, SEARCH_CATEGORY, SEARCH_DESCRIPTION, SEARCH_MAKE, SEARCH_MODEL]
+  ORDER_TYPES = [SEARCH_BODY_TYPE, SEARCH_CATEGORY, SEARCH_DESCRIPTION, SEARCH_MAKE, SEARCH_MODEL]
 
   def self.search_for(search_type, keyword)
     search_condition = "%" + keyword + "%"
@@ -51,6 +52,24 @@ class Car < ActiveRecord::Base
       find(:all, :conditions => ['make LIKE ?', search_condition])
     elsif search_type == SEARCH_MODEL
      find(:all, :conditions => ['model LIKE ?', search_condition])
+    else
+      []
+    end
+  end
+
+  def self.all_ordered(order_type=SEARCH_ALL)
+    if order_type == SEARCH_ALL
+      find(:all,  :order =>'make ASC, model ASC')
+    elsif order_type == SEARCH_BODY_TYPE
+      find(:all, :order =>'body_type ASC')
+    elsif order_type == SEARCH_CATEGORY
+      find(:all, :order =>'car_category ASC')
+    elsif order_type == SEARCH_DESCRIPTION
+     find(:all, :order =>'description ASC')
+    elsif order_type == SEARCH_MAKE
+      find(:all, :order =>'make ASC')
+    elsif order_type == SEARCH_MODEL
+     find(:all, :order =>'model ASC')
     else
       []
     end

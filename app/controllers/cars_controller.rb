@@ -1,12 +1,17 @@
 class CarsController < ApplicationController
-  before_filter :authenticate_user! , except: [:index,:show,:search]
+  before_filter :authenticate_user! , except: [:index,:show,:search, :sort]
   before_filter :find_car, only: [:show, :edit, :update, :destroy]
   before_filter :set_is_current_user_admin
 
   # GET /cars
   # GET /cars.json
   def index
-    @cars = Car.all
+    @sort_type = params[:sort_type]
+    if @sort_type
+      @cars = Car.all_ordered params[:sort_type]
+    else  
+      @cars = Car.all_ordered Car::SEARCH_ALL
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -109,6 +114,11 @@ class CarsController < ApplicationController
   def search
     @cars = Car.search_for params[:search_type], params[:search]
   end
+
+  def sort
+    @sort_type = params[:sort_type]
+    @cars = Car.all_ordered params[:sort_type]
+  end  
 
   private
   def find_car 

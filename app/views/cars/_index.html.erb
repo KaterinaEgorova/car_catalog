@@ -1,0 +1,17 @@
+<h1>Listing cars</h1>
+<br />
+<table width="100%" border="0">
+	<tr>
+		<td><%= render 'search' %></td>
+		<td>&nbsp;</td>
+		<td><%= render 'sort_by' %></td>
+	</tr>
+</table>
+
+<%= render 'list_cars' %>
+
+<br />
+
+<% if @is_current_user_admin  %>    
+  <%= link_to 'New Car', new_car_path, class: "btn btn-primary", :style=> "color: #FFFFFF" %>
+<% end %>

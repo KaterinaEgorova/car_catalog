@@ -11,6 +11,7 @@ CarCatalog::Application.routes.draw do
     resources :likes, only: [:create,:destroy]
     resources :imamges, only: [:create, :destroy]
     post :search, on: :collection    
+    post :sort, on: :collection    
   end
 
   root :to => 'home#index'

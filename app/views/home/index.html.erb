@@ -1,13 +1,17 @@
 <h1>Listing cars</h1>
 <br />
 
-<div id='search'>
-	<%= render 'cars/search' %>
-</div>
+<table width="100%" border="0">
+	<tr>
+		<td><%= render 'cars/search' %></td>
+		<td>&nbsp;</td>
+		<td><%= render 'cars/sort_by' %></td>
+	</tr>
+</table>
 
 <div id='home-list'>
 	<p><b><u><%= link_to 'New Car', new_car_path %></u></b></p>
-	<br/>
-	<%= render 'cars/list_cars' %>
+  <br/>
+  <%= render 'cars/list_cars' %>
 </div>
 
