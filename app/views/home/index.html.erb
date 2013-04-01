@@ -10,7 +10,9 @@
 </table>
 
 <div id='home-list'>
+  <% if current_user && current_user.is_admin? %>
 	<p><b><u><%= link_to 'New Car', new_car_path %></u></b></p>
+  <% end %>
   <br/>
   <%= render 'cars/list_cars' %>
 </div>
