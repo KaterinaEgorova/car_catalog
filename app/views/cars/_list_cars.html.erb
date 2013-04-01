@@ -4,7 +4,6 @@
     <th>Make</th>
     <th>Model</th>
     <th>Description</th>
-    <th></th>
     <% if @is_current_user_admin %>    
       <th></th>
       <th></th>
@@ -13,13 +12,12 @@
 
 <% @cars.each do |car| %>
   <tr>
-    <td><%= car.make %></td>
-    <td><%= car.model %></td>
-    <td><%= truncate(car.description, length: 25, omission: '...') %></td>
-    <td><%= link_to 'Show', car %></td>
+    <td><%= link_to car.make, car, :class => "listitem" %></td>
+    <td><%= link_to car.model, car, :class => "listitem" %></td>
+    <td><%= truncate(car.description, length: 25, omission: '...', :class => "listitem") %></td>
     <% if @is_current_user_admin  %>    
-      <td><%= link_to 'Edit', edit_car_path(car) %></td>
-      <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Edit', edit_car_path(car), :class => "mybutton", :style=> "color: #FFFFFF" %></td>
+      <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' }, :class => "mybutton", :style=> "color: #FFFFFF" %></td>
     <% end %>
   </tr>
 <% end %>

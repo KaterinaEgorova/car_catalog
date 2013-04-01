@@ -1,3 +1,46 @@
 // Place all the styles related to the Cars controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.mybutton
+{
+	background-color: #0044FF;
+	color: #FFFFFF;
+	border-radius: 3px;
+	font-weight: bold;
+	padding-left: 2px;
+	padding-right: 2px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+a:visited
+{
+	color: #FFFFFF;
+}
+
+a:link
+{
+	color: #FFFFFF;
+}
+
+.listitem, a.listitem, a:visited.listitem
+{
+	color: #000000;
+}
+
+a:hover.listitem
+{
+	color: #FFFFFF;
+}
+
+a {
+  color: #0088cc;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #005580;
+  text-decoration: underline;
+}
