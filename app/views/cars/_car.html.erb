@@ -1,19 +1,6 @@
 <h2><%= @car.make %> <%= @car.model %></h2>
-<% if current_user %>
-<% if current_user.has_liked?(@car) %>
-	<%= form_for @like, url: car_like_path(@car, @like), method: :delete do |f| %>
-		<%= f.submit "Unlike" %>
-	<% end %>
-<% else %>
-  <%= link_to raw("<i class=\"icon-thumbs-up icon-white\"></i> Like"), 
-          car_likes_path(@car), 
-          class: "btn btn-primary",
-          method: :create %>
-<% end %>
-<% else %>
- <p>Please <%= link_to "sign in", new_user_session_path %> to like this car...</p>
-<% end %>
-<%= pluralize( @car.likes.count, 'person') %> likes this car!
+
+<%= render 'misc/like' %>
 
 <div class="car_images">
 	<% @car.images.each do |image| %>

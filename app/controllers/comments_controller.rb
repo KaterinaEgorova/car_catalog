@@ -35,8 +35,8 @@ class CommentsController < CarsController
 
   # GET /comments/1/edit
   def edit
-    @car = Car.find(params[:id])
-    @comment = Comment.first#find(params[:id])
+    @car = Car.find(params[:car_id])
+    @comment = Comment.find(params[:id])
   end
 
   # POST /comments
@@ -65,7 +65,7 @@ class CommentsController < CarsController
 
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to :root, notice: 'Comment was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -78,11 +78,14 @@ class CommentsController < CarsController
   # DELETE /comments/1.json
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.destroy
+    
+    # @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to @car }
-      format.json { head :no_content }
+      format.js { render 'comments/destroy', locals:{comment:@comment} }
+      # format.html { redirect_to :root }
+      # format.json { head :no_content }
     end
+
   end
 end

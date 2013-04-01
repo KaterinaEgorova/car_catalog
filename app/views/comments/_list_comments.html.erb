@@ -8,4 +8,4 @@
 	<p>Please <%= link_to "Sign in", new_user_session_path %> to leave a commnt </p>
 	<br/>
 <% end %>
-<%= render @car.comments.all %>
+<%= render @car.comments.order("created_at DESC") %>
