@@ -12,7 +12,7 @@
   </tr>
 
 <% @cars.each do |car| %>
-  <tr <% if car.id == @car.id %> class = 'row-selected' <% end %>>
+  <tr <% if @car != nil and car.id == @car.id %> class = 'row-selected' <% end %>>
     <td><%= car.make %></td>
     <td><%= car.model %></td>
     <td><%= truncate(car.description, length: 25, omission: '...') %></td>
