@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :avatar
+  attr_reader :is_admin
+
     # This method associates the attribute ":avatar" with a file attachment
   has_attached_file :avatar, styles: {
     thumb: '50x50>',

@@ -1,56 +1,12 @@
-<h2><%= @car.make %> <%= @car.model %></h2>
-<% if current_user %>
-<% if current_user.has_liked?(@car) %>
-	<%= form_for @like, url: car_like_path(@car, @like), method: :delete do |f| %>
-		<%= f.submit "Unlike" %>
-	<% end %>
-<% else %>
-  <%= link_to raw("<i class=\"icon-thumbs-up icon-white\"></i> Like"), 
-          car_likes_path(@car), 
-          class: "btn btn-primary",
-          method: :create %>
-<% end %>
-<% else %>
- <p>Please <%= link_to "sign in", new_user_session_path %> to like this car...</p>
-<% end %>
-<%= pluralize( @car.likes.count, 'person') %> likes this car!
 
-<div class="car_images">
-	<% @car.images.each do |image| %>
-		<%= image_tag image.car_image.url(:thumb) %>
-	<% end %>
-</div>
-  
-<h3>Description</h3>
-<div class="car_description">
-  <%= @car.description %>
-</p>
-
-<h3>Details</h3>
-<div class="car_details">
-	<p><span class="label">Make:</span> <%= @car.make %></p>
-	<p><span class="label">Model:</span> <%= @car.model %></p>
-	<p><span class="label">Year:</span> year is comming soon... </p>
-	<p><span class="label">Category:</span> <%= @car.car_category %></p>
-	<p><span class="label">Body type:</span> <%= @car.body_type %></p>
-	<p><span class="label">Advantages:</span> <%= @car.advantages %></p>
-	<p><span class="label">Disadvantages:</span> <%= @car.disadvantages %></p>
- </div>
-
-<hr />
+<%= render partial: 'car' %>
+<%= render partial: 'comments/list_comments' %>
 
 <h3> Comments </h3>
 <%if current_user %>
  <%= form_for @comment, url: car_comments_path(@car), :html => { :class => "new_comment well form-search", :id => "new_comment" }  do |f| %>
   <%= f.text_area :body, rows: 1 %>
   <%= f.submit "Add", class: "btn btn-primary" %>
+<% if @is_current_user_admin %>    
+ <%= link_to 'Back', cars_path, class: "btn btn-primary", :style=> "color: #FFFFFF" %>
 <% end %>
-<% else %>
-	<p>Please <%= link_to "Sign in", new_user_session_path %> to leave a commnt </p>
-	<br/>
-<% end %>
-<%= render @car.comments.all %>
-
-
-<%= link_to 'Edit', edit_car_path(@car) %> |
-<%= link_to 'Back', cars_path %>

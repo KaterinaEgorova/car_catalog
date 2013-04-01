@@ -1,27 +1,11 @@
 <h1>Listing cars</h1>
+<br />
+<%= render 'search' %>
 
-<table class="table table-striped">
-  <tr>
-    <th>Make</th>
-    <th>Model</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @cars.each do |car| %>
-  <tr>
-    <td><%= car.make %></td>
-    <td><%= car.model %></td>
-    <td><%= truncate(car.description, length: 25, omission: '...') %></td>
-    <td><%= link_to 'Show', car %></td>
-    <td><%= link_to 'Edit', edit_car_path(car) %></td>
-    <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+<%= render 'list_cars' %>
 
 <br />
 
-<%= link_to 'New Car', new_car_path %>
+<% if @is_current_user_admin  %>    
+  <%= link_to 'New Car', new_car_path, class: "btn btn-primary", :style=> "color: #FFFFFF" %>
+<% end %>

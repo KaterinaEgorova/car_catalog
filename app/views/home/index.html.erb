@@ -1,0 +1,15 @@
+<h1>Listing cars</h1>
+<br />
+
+<%= render 'cars/search' %>
+<%= render 'cars/list_cars' %>
+<%= render 'cars/car' %>
+
+<%= link_to 'Edit', edit_car_path(@car) %> |
+<%= link_to 'Back', cars_path %>
+
+<%= render 'comments/list_comments' %>
+
+<br />
+
+<%= link_to 'New Car', new_car_path %>
