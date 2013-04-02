@@ -3,6 +3,7 @@
   <tr>
     <th>Make</th>
     <th>Model</th>
+    <th>Body Type</th>
     <th>Description</th>
     <% if @is_current_user_admin %>    
       <th></th>
@@ -14,6 +15,7 @@
   <tr>
     <td><%= link_to car.make, car, :class => "listitem" %></td>
     <td><%= link_to car.model, car, :class => "listitem" %></td>
+    <td><%= link_to car.body_type, car, :class => "listitem" if car.body_type %></td>
     <td><%= truncate(car.description, length: 25, omission: '...', :class => "listitem") %></td>
     <% if @is_current_user_admin  %>    
       <td><%= link_to 'Edit', edit_car_path(car), :class => "mybutton", :style=> "color: #FFFFFF" %></td>
