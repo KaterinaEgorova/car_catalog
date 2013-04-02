@@ -1,5 +1,2 @@
-  <%= form_tag sort_cars_path, class: "form-search"  do  %>
-  <% @sort_type = Car::LIKES_COUNT unless @sort_type %> 
-    <%= select_tag :sort_type, options_for_select(Car::ORDER_TYPES, @sort_type) %> 
-    <%= submit_tag "Sort", class: "btn btn-primary", :name => nil %> 
-  <% end %> 
+<!-- This file is deprecated.  Please merge with home/sort_by instead -->
+<%= render partial: 'home/sort_by' %>

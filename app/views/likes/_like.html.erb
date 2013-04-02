@@ -1,0 +1,15 @@
+<% if current_user %>
+<% if current_user.has_liked?(@car) %>
+	<%= form_for @like, url: car_like_path(@car, @like), method: :delete do |f| %>
+		<%= f.submit "Unlike", class: "btn btn-primary" %> <%= pluralize @car.likes.count, 'person' %> <%= pluralize_second_without_count @car.likes.count, 'like' %> this car!
+	<% end %>
+<% else %>
+  <p><%= link_to raw('<i class=\'icon-thumbs-up icon-white\'></i> Like'),
+  	car_likes_path(@car), 
+	  class: "btn btn-primary",
+	  method: :create %> <%= pluralize @car.likes.count, 'person' %> <%= pluralize_second_without_count @car.likes.count, 'like' %> this car!
+	<% end %></p>
+<% else %>
+ <p>Please <%= link_to "sign in", new_user_session_path %> to like this car...</p>
+ <%= pluralize( @car.likes.count, 'person') %> likes this car!
+<% end %>
