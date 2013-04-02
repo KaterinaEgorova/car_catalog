@@ -45,17 +45,17 @@ class Car < ActiveRecord::Base
   def self.search_for(search_type, keyword)
     search_condition = "%" + keyword + "%"
     if search_type == SEARCH_ALL
-      find(:all, :conditions => ['description LIKE ? OR make LIKE ? OR model LIKE ? OR car_category LIKE ? OR body_type LIKE ?', search_condition, search_condition, search_condition, search_condition, search_condition])
+      find(:all, :conditions => ['lower(description) LIKE ? OR lower(make) LIKE ? OR lower(model) LIKE ? OR lower(car_category) LIKE ? OR lower(body_type) LIKE ?', search_condition.downcase, search_condition.downcase, search_condition.downcase, search_condition.downcase, search_condition.downcase])
     elsif search_type == SEARCH_BODY_TYPE
-      find(:all, :conditions => ['body_type LIKE ?',  search_condition])
+      find(:all, :conditions => ['lower(body_type) LIKE ?',  search_condition.downcase])
     elsif search_type == SEARCH_CATEGORY
-      find(:all, :conditions => ['car_category LIKE ?', search_condition])
+      find(:all, :conditions => ['lower(car_category) LIKE ?', search_condition.downcase])
     elsif search_type == SEARCH_DESCRIPTION
-     find(:all, :conditions => ['description LIKE ?', search_condition])
+     find(:all, :conditions => ['lower(description) LIKE ?', search_condition.downcase])
     elsif search_type == SEARCH_MAKE
-      find(:all, :conditions => ['make LIKE ?', search_condition])
+      find(:all, :conditions => ['lower(make) LIKE ?', search_condition.downcase])
     elsif search_type == SEARCH_MODEL
-     find(:all, :conditions => ['model LIKE ?', search_condition])
+     find(:all, :conditions => ['lower(model) LIKE ?', search_condition.downcase])
     else
       []
     end
