@@ -9,9 +9,9 @@ CarCatalog::Application.routes.draw do
   match 'home/:id' => 'home#show_car', :as => :show_car
 
   resources :cars, only: [:show]  do
+    resources :images, only: [:show]
     resources :comments
     resources :likes, only: [:create,:destroy]
-    resources :imamges, only: [:create, :destroy]
     post :search, on: :collection    
     post :sort, on: :collection    
   end

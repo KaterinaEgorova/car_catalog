@@ -3,26 +3,38 @@
 
 <%= render 'like', car: car %>
 
-<div class="car_images">
-	<% @car.images.each do |image| %>
-		<%= image_tag image.car_image.url(:thumb) %>
+<div class="images_container">
+	<div class="car_image" id="car_image">
+	<% if @car.images and @car.images.length > 0 %>
+		<%= image_tag @car.images.first.car_image.url(:medium), class: "img-polaroid" %>
+	<% else %>
+	 <p>No images has been added for this car yet...</p>
 	<% end %>
+	<div>
+	<div class="car_images">
+		<% @car.images.each do |image| %>
+				<%= link_to (image_tag image.car_image.url(:thumb), class: "img-polaroid"), "" %>
+				<% #,car_image_path(@car, image) %>
+		<% end %>
+	</div>
 </div>
-  
-<h3>Description</h3>
-<div class="car_description">
-  <%= @car.description %>
-</p>
 
-<h3>Details</h3>
-<div class="car_details">
-	<p><span class="label">Make:</span> <%= @car.make %></p>
-	<p><span class="label">Model:</span> <%= @car.model %></p>
-	<p><span class="label">Year:</span> year is comming soon... </p>
-	<p><span class="label">Category:</span> <%= @car.car_category %></p>
-	<p><span class="label">Body type:</span> <%= @car.body_type %></p>
-	<p><span class="label">Advantages:</span> <%= @car.advantages %></p>
-	<p><span class="label">Disadvantages:</span> <%= @car.disadvantages %></p>
- </div>
+<div class="descriprtion-container">
+  <h3>Description</h3>
+	<div class="car_description">
+	  <%= @car.description %>
+	</p>
+
+	<h3>Details</h3>
+	<div class="car_details">
+		<p><span class="label">Make:</span> <%= @car.make %></p>
+		<p><span class="label">Model:</span> <%= @car.model %></p>
+		<p><span class="label">Year:</span> year is comming soon... </p>
+		<p><span class="label">Category:</span> <%= @car.car_category %></p>
+		<p><span class="label">Body type:</span> <%= @car.body_type %></p>
+		<p><span class="label">Advantages:</span> <%= @car.advantages %></p>
+		<p><span class="label">Disadvantages:</span> <%= @car.disadvantages %></p>
+	 </div>
+</div>
 
 <hr />

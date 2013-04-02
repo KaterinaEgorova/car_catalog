@@ -3,13 +3,14 @@
 <%= form_for(resource, :as => resource_name, html: {class: "well form-horizontal"}, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
   <div class="control-group">
-  <div class="controls">
-    <% if f.object.avatar.file? %>
-      <div class="thumbnail">
-        <%= f.object.аvatar.url(:thumb) %>
-      </div>
-    <% end %>
-  </div></div>
+    <div class="controls">
+      <% if f.object.avatar.file? %>
+        <div class="thumbnail">
+          <%= f.object.аvatar.url(:thumb) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
 	<div class="control-group"><%= f.label :avatar, class: "control-label" %>
   <div class="controls"><%= f.file_field :avatar %></div></div>
