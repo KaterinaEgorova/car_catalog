@@ -1,4 +1,5 @@
 class LikesController < CarsController
+	include ApplicationHelper
 	before_filter :find_car
 	def create 
 		@like = Like.new
