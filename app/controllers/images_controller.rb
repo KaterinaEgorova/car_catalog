@@ -7,7 +7,7 @@ class ImagesController < CarsController
 		 respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @image }
-      format.js { render js: @image }
+      format.js { render }
     end
 	end
 end
